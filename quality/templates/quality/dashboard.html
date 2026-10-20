@@ -1,0 +1,94 @@
+
+{% extends 'quality/base.html' %}
+
+{% block title %}Dashboard | Factory QC{% endblock %}
+
+{% block content %}
+<h2 class="mb-4">Factory Operations Dashboard</h2>
+
+<div class="row g-3 mb-4">
+    <div class="col-md-3">
+        <div class="stat-card">
+            <h6>Total Jobs</h6>
+            <h2>{{ total_jobs }}</h2>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="stat-card">
+            <h6>Active Jobs</h6>
+            <h2>{{ active_jobs }}</h2>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="stat-card">
+            <h6>Passed Inspections</h6>
+            <h2>{{ passed_inspections }}</h2>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="stat-card">
+            <h6>Failed Inspections</h6>
+            <h2>{{ failed_inspections }}</h2>
+        </div>
+    </div>
+</div>
+
+<div class="row g-3 mb-4">
+    <div class="col-md-4">
+        <div class="stat-card">
+            <h6>Completed Jobs</h6>
+            <h2>{{ completed_jobs }}</h2>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="stat-card">
+            <h6>Total Inspections</h6>
+            <h2>{{ total_inspections }}</h2>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="stat-card">
+            <h6>Pending Reviews</h6>
+            <h2>{{ pending_inspections }}</h2>
+        </div>
+    </div>
+</div>
+
+<div class="d-flex flex-wrap gap-2 mb-4">
+    <a class="btn btn-primary" href="{% url 'create_job' %}">
+        + Create Production Job
+    </a>
+    <a class="btn btn-success" href="{% url 'create_inspection' %}">
+        + Record Inspection
+    </a>
+    <a class="btn btn-dark" href="{% url 'dispatch_clearance' %}">
+        Check Dispatch
+    </a>
+</div>
+
+<h4>Recent Production Jobs</h4>
+<div class="table-responsive">
+    <table class="table table-striped table-bordered">
+        <thead>
+            <tr>
+                <th>Part Number</th>
+                <th>Part Name</th>
+                <th>Quantity</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for job in recent_jobs %}
+            <tr>
+                <td>{{ job.part_number }}</td>
+                <td>{{ job.part_name }}</td>
+                <td>{{ job.quantity }}</td>
+                <td>{{ job.get_status_display }}</td>
+            </tr>
+            {% empty %}
+            <tr><td colspan="4">No production jobs yet.</td></tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

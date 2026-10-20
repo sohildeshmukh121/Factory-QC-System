@@ -1,0 +1,40 @@
+
+{% extends 'quality/base.html' %}
+
+{% block title %}Production Jobs{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h2>Production Jobs</h2>
+    <a class="btn btn-primary" href="{% url 'create_job' %}">
+        + Add Job
+    </a>
+</div>
+
+<div class="table-responsive">
+    <table class="table table-bordered table-hover">
+        <thead class="table-dark">
+            <tr>
+                <th>Part Number</th>
+                <th>Part Name</th>
+                <th>Quantity</th>
+                <th>Status</th>
+                <th>Created</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for job in jobs %}
+            <tr>
+                <td>{{ job.part_number }}</td>
+                <td>{{ job.part_name }}</td>
+                <td>{{ job.quantity }}</td>
+                <td>{{ job.get_status_display }}</td>
+                <td>{{ job.created_at|date:"d M Y H:i" }}</td>
+            </tr>
+            {% empty %}
+            <tr><td colspan="5">No jobs found. Add your first job.</td></tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

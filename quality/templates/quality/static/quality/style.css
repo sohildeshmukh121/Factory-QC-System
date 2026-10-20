@@ -1,0 +1,91 @@
+
+body {
+    background: #f4f6f9;
+    color: #202938;
+    font-family: Arial, sans-serif;
+    margin: 0;
+}
+
+.sidebar {
+    background: #ffffff;
+    min-height: calc(100vh - 56px);
+    border-right: 1px solid #e0e5eb;
+}
+
+.sidebar a {
+    display: block;
+    color: #27364b;
+    text-decoration: none;
+    padding: 12px;
+    margin-bottom: 6px;
+    border-radius: 6px;
+}
+
+.sidebar a:hover {
+    background: #eaf1ff;
+    color: #0d6efd;
+}
+
+.stat-card {
+    background: #ffffff;
+    border: 1px solid #e1e6ed;
+    border-radius: 10px;
+    padding: 22px;
+    min-height: 120px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+}
+
+.stat-card h6 {
+    color: #657185;
+    margin-bottom: 12px;
+}
+
+.stat-card h2 {
+    font-weight: 700;
+    color: #172b4d;
+}
+
+.form-card {
+    max-width: 750px;
+    background: #ffffff;
+    padding: 28px;
+    border-radius: 10px;
+    border: 1px solid #e1e6ed;
+}
+
+.form-card input,
+.form-card select,
+.form-card textarea {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    padding: 10px;
+    border: 1px solid #ccd3dd;
+    border-radius: 6px;
+    margin-top: 5px;
+    box-sizing: border-box;
+}
+
+.form-card label {
+    font-weight: 600;
+}
+
+.form-card p {
+    margin-bottom: 18px;
+}
+
+table {
+    background: #ffffff;
+}
+
+@media (max-width: 767px) {
+    .sidebar {
+        min-height: auto;
+        border-right: 0;
+        border-bottom: 1px solid #e0e5eb;
+    }
+
+    main {
+        padding: 16px !important;
+    }
+}

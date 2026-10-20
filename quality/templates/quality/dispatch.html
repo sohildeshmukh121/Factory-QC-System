@@ -1,0 +1,48 @@
+
+{% extends 'quality/base.html' %}
+
+{% block title %}Dispatch Clearance{% endblock %}
+
+{% block content %}
+<h2 class="mb-2">Pre-Dispatch Clearance</h2>
+<p class="text-muted mb-4">
+    Dispatch is allowed only when the job and quality approvals are complete.
+</p>
+
+<div class="table-responsive">
+    <table class="table table-bordered">
+        <thead class="table-dark">
+            <tr>
+                <th>Part Number</th>
+                <th>Production Status</th>
+                <th>All Inspections Approved</th>
+                <th>Final Inspection Approved</th>
+                <th>Dispatch Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in dispatch_rows %}
+            <tr>
+                <td>{{ row.job.part_number }}</td>
+                <td>{{ row.job.get_status_display }}</td>
+                <td>{{ row.all_approved|yesno:"Yes,No" }}</td>
+                <td>{{ row.final_approved|yesno:"Yes,No" }}</td>
+                <td>
+                    {% if row.cleared %}
+                        <span class="badge text-bg-success">
+                            CLEARED
+                        </span>
+                    {% else %}
+                        <span class="badge text-bg-danger">
+                            BLOCKED
+                        </span>
+                    {% endif %}
+                </td>
+            </tr>
+            {% empty %}
+            <tr><td colspan="5">No production jobs available.</td></tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
